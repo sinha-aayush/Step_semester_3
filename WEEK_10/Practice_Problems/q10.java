@@ -1,4 +1,4 @@
-package WEEK_10.Assignment_Problems;
+package WEEK_10.Practice_Problems;
 
 import java.util.Scanner;
 import java.util.Locale;
@@ -49,7 +49,8 @@ class Student {
     }
 }
 
-public class q10 {
+public class q10
+ {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

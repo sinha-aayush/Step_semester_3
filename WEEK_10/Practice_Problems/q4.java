@@ -1,8 +1,9 @@
-package WEEK_10.Assignment_Problems;
+package WEEK_10.Practice_Problems;
 
 import java.util.Scanner;
 
-public class q4 {
+public class q4
+ {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
