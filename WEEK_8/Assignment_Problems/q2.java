@@ -1,3 +1,4 @@
+
 package WEEK_8.Assignment_Problems;
 
 import java.util.Scanner;
@@ -52,7 +53,12 @@ class Truck extends Vehicle {
 public class q2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if (!scanner.hasNextInt()) return;
+
+        if (!scanner.hasNextInt()) {
+            scanner.close();
+            return;
+        }
+
         int n = scanner.nextInt();
         Vehicle[] vehicles = new Vehicle[n];
         String[] types = new String[n];
@@ -60,6 +66,7 @@ public class q2 {
         for (int i = 0; i < n; i++) {
             types[i] = scanner.next();
             int hrs = scanner.nextInt();
+
             if (types[i].equals("BIKE")) {
                 vehicles[i] = new Bike(hrs);
             } else if (types[i].equals("CAR")) {
@@ -70,12 +77,16 @@ public class q2 {
         }
 
         double grandTotal = 0.0;
+
         for (int i = 0; i < n; i++) {
             double charge = vehicles[i].calculateCharge();
             grandTotal += charge;
+
             System.out.printf("%s: %.2f\n", types[i], charge);
         }
+
         System.out.printf("Total: %.2f\n", grandTotal);
+
         scanner.close();
     }
 }

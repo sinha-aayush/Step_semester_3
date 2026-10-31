@@ -1,3 +1,4 @@
+
 package WEEK_8.Assignment_Problems;
 
 import java.time.LocalDate;
@@ -13,7 +14,10 @@ abstract class Subscriber {
     }
 
     public abstract LocalDate calculateRenewalDate();
-    public String getName() { return name; }
+
+    public String getName() {
+        return name;
+    }
 }
 
 class BasicSubscriber extends Subscriber {
@@ -52,7 +56,12 @@ class PremiumSubscriber extends Subscriber {
 public class q5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if (!scanner.hasNextInt()) return;
+
+        if (!scanner.hasNextInt()) {
+            scanner.close();
+            return;
+        }
+
         int n = scanner.nextInt();
         Subscriber[] subscribers = new Subscriber[n];
 
@@ -60,6 +69,7 @@ public class q5 {
             String type = scanner.next();
             String name = scanner.next();
             LocalDate startDate = LocalDate.parse(scanner.next());
+
             if (type.equals("BASIC")) {
                 subscribers[i] = new BasicSubscriber(name, startDate);
             } else if (type.equals("STANDARD")) {
@@ -73,6 +83,7 @@ public class q5 {
             LocalDate renewalDate = subscribers[i].calculateRenewalDate();
             System.out.println(subscribers[i].getName() + ": " + renewalDate);
         }
+
         scanner.close();
     }
 }

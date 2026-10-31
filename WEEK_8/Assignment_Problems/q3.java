@@ -1,3 +1,4 @@
+
 package WEEK_8.Assignment_Problems;
 
 import java.util.Scanner;
@@ -51,7 +52,12 @@ class AcRoom extends Room {
 public class q3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if (!scanner.hasNextInt()) return;
+
+        if (!scanner.hasNextInt()) {
+            scanner.close();
+            return;
+        }
+
         int n = scanner.nextInt();
         Room[] rooms = new Room[n];
         String[] types = new String[n];
@@ -59,6 +65,7 @@ public class q3 {
         for (int i = 0; i < n; i++) {
             types[i] = scanner.next();
             int units = scanner.nextInt();
+
             if (types[i].equals("SINGLE")) {
                 rooms[i] = new SingleRoom(units);
             } else if (types[i].equals("SHARED")) {
@@ -70,12 +77,16 @@ public class q3 {
         }
 
         double grandTotal = 0.0;
+
         for (int i = 0; i < n; i++) {
             double bill = rooms[i].calculateBill();
             grandTotal += bill;
+
             System.out.printf("%s: %.2f\n", types[i], bill);
         }
+
         System.out.printf("Total: %.2f\n", grandTotal);
+
         scanner.close();
     }
 }

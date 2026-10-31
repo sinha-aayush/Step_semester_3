@@ -1,3 +1,4 @@
+
 package WEEK_8.Assignment_Problems;
 
 import java.util.Scanner;
@@ -48,13 +49,19 @@ class Guest extends Customer {
 public class q1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if (!scanner.hasNextInt()) return;
+
+        if (!scanner.hasNextInt()) {
+            scanner.close();
+            return;
+        }
+
         int n = scanner.nextInt();
         Customer[] customers = new Customer[n];
-        
+
         for (int i = 0; i < n; i++) {
             String type = scanner.next();
             double amt = scanner.nextDouble();
+
             if (type.equals("STUDENT")) {
                 customers[i] = new Student(amt);
             } else if (type.equals("STAFF")) {
@@ -63,19 +70,27 @@ public class q1 {
                 customers[i] = new Guest(amt);
             }
         }
-        
+
         double grandTotal = 0.0;
+
         for (int i = 0; i < n; i++) {
             double finalAmt = customers[i].calculateFinalAmount();
             grandTotal += finalAmt;
+
             String typeName = "";
-            if (customers[i] instanceof Student) typeName = "STUDENT";
-            else if (customers[i] instanceof Staff) typeName = "STAFF";
-            else if (customers[i] instanceof Guest) typeName = "GUEST";
-            
+
+            if (customers[i] instanceof Student)
+                typeName = "STUDENT";
+            else if (customers[i] instanceof Staff)
+                typeName = "STAFF";
+            else if (customers[i] instanceof Guest)
+                typeName = "GUEST";
+
             System.out.printf("%s: %.2f\n", typeName, finalAmt);
         }
+
         System.out.printf("Total: %.2f\n", grandTotal);
+
         scanner.close();
     }
 }

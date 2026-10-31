@@ -1,3 +1,4 @@
+
 package WEEK_8.Practice_Problems;
 
 import java.util.Scanner;
@@ -21,7 +22,7 @@ class StandardDelivery extends Delivery {
 
     @Override
     public double calculateFee() {
-        return 5.0 + (0.50 * weight) + (0.10 * distance); // Base $5, $0.50/kg, $0.10/km[cite: 23]
+        return 5.0 + (0.50 * weight) + (0.10 * distance);
     }
 }
 
@@ -32,7 +33,7 @@ class ExpressDelivery extends Delivery {
 
     @Override
     public double calculateFee() {
-        return 15.0 + (1.00 * weight) + (0.20 * distance); // Base $15, $1.00/kg, $0.20/km[cite: 23]
+        return 15.0 + (1.00 * weight) + (0.20 * distance);
     }
 }
 
@@ -46,14 +47,19 @@ class InternationalDelivery extends Delivery {
 
     @Override
     public double calculateFee() {
-        return 25.0 + (2.00 * weight) + (0.50 * distance) + customsFee; // Base $25, $2.00/kg, $0.50/km + customs[cite: 23]
+        return 25.0 + (2.00 * weight) + (0.50 * distance) + customsFee;
     }
 }
 
 public class q3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if (!scanner.hasNextInt()) return;
+
+        if (!scanner.hasNextInt()) {
+            scanner.close();
+            return;
+        }
+
         int n = scanner.nextInt();
         Delivery[] deliveries = new Delivery[n];
         String[] types = new String[n];
@@ -62,6 +68,7 @@ public class q3 {
             types[i] = scanner.next();
             double weight = scanner.nextDouble();
             double distance = scanner.nextDouble();
+
             if (types[i].equals("STANDARD")) {
                 deliveries[i] = new StandardDelivery(weight, distance);
             } else if (types[i].equals("EXPRESS")) {
@@ -73,12 +80,16 @@ public class q3 {
         }
 
         double grandTotal = 0.0;
+
         for (int i = 0; i < n; i++) {
             double fee = deliveries[i].calculateFee();
             grandTotal += fee;
+
             System.out.printf("%s: %.2f\n", types[i], fee);
         }
+
         System.out.printf("Total: %.2f\n", grandTotal);
+
         scanner.close();
     }
 }
